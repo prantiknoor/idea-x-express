@@ -6,7 +6,7 @@ const authMiddleware = async (req, res, next) => {
         req.auth = auth;
         next();
     } else {
-        res.statu(401).json({
+        res.status(401).json({
             status: 401,
             message: "Authentication error",
         });

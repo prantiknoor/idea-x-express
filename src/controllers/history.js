@@ -4,11 +4,10 @@ const { readHistoryId } = require("../utils");
 async function getHistory(req, res, next) {
     let historyId = req.params.historyId;
 
-    if (historyId == 'latest') {
-        historyId = await readHistoryId();
-    }
-
     try {
+        if (historyId == "latest") {
+            historyId = await readHistoryId();
+        }
         const gmail = google.gmail({ version: "v1", auth: req.auth });
         const response = await gmail.users.history.list({
             userId: "me",
